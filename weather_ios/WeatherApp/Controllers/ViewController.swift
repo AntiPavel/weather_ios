@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        OpenWeatherMapNetwork().getWeatherAt(city: 2867714) { _,_  in
+            
+        }
     }
 
 }
