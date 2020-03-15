@@ -17,10 +17,17 @@ protocol NetworkService {
 extension NetworkService {
     func fetch<T: Decodable>(_ request: DataRequest, of: T.Type, result: @escaping Response<T>) {
 
-      request
-        .validate()
-        .responseDecodable(of: T.self) { response in
-            result(response)
-      }
-  }
+        let decoder = JSONDecoder()
+        if let infoContext = CodingUserInfoKey.managedObjectContext {
+            decoder.userInfo[infoContext] = CoreData.shared.cityUpdateContext
+        }
+        
+        request
+            .validate()
+            .responseDecodable(of: T.self, decoder: decoder) { response in
+                result(response)
+        }
+    }
+    
+//    func fetch
 }

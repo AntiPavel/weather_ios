@@ -8,14 +8,14 @@
 
 import Alamofire
 
-typealias WeatherResponse = (SuccessRespone?, Error?) -> Void
+typealias WeatherResponse = (City?, Error?) -> Void
 
 struct OpenWeatherMapNetwork: NetworkService {
 
     func getWeatherAt(city id: Int, result: @escaping WeatherResponse) {
 
         fetch( AF.request( Router.getWeather(fetchRequest: .args(city: id))),
-              of: SuccessRespone.self) { response in
+              of: City.self) { response in
 
                 result(response.value, response.error)
                 print(response.value)
@@ -71,7 +71,8 @@ extension OpenWeatherMapNetwork {
         var parameters: Parameters {
             if case .args(let city) = self {
                 return [ Api.cityIdKey: city,
-                         Api.appIdKey: Api.appId, ]
+                         Api.appIdKey: Api.appId,
+                         Api.unitsKey: Api.units, ]
             }
             return [:]
         }
