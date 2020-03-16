@@ -14,15 +14,23 @@ class MainViewController: UIViewController {
     lazy var network: NetworkService? = appDelegate?.network
     lazy var storage: StorageService? = appDelegate?.storage
     lazy var location: LocationManager? = appDelegate?.location
+    lazy var imageProvider: ImageProvider? = appDelegate?.imageProvider
 
+    @IBOutlet weak var cityTitle: UILabel?
+    @IBOutlet weak var weatherDescription: UILabel?
+    @IBOutlet weak var weatherIcon: UIImageView?
+    @IBOutlet weak var tempLabel: UILabel?
+    @IBOutlet weak var backgroundImage: UIImageView?
+    @IBOutlet weak var localLabel: UILabel?
+    @IBOutlet weak var localCityTitle: UILabel?
+    @IBOutlet weak var localDescription: UILabel?
+    @IBOutlet weak var localIcon: UIImageView?
     @IBOutlet weak var bottomTemp: UILabel?
     @IBOutlet weak var cityTextfield: UITextField?
     @IBOutlet weak var searchButton: UIButton?
-    
-    @IBAction func textfieldEditEnd(_ sender: Any) {
-        print("textfieldEditEnd")
-    }
-    
+    @IBOutlet weak var addButton: UIButton?
+    @IBOutlet weak var localImage: UIImageView?
+
     @IBAction func searchAction(_ sender: Any) {
         searchCity()
     }
@@ -47,14 +55,37 @@ class MainViewController: UIViewController {
     
     var searchedWeather: WeatherModel? {
         didSet {
-            cityTextfield?.placeholder = searchedWeather?.name
+            updateMainView()
         }
     }
     
     var localWeather: WeatherModel? {
         didSet {
-            bottomTemp?.text = localWeather?.description
+            updateBottomView()
         }
+    }
+    
+    private func updateMainView() {
+        guard let weather = searchedWeather else { return }
+        cityTitle?.text = weather.name
+        tempLabel?.text = String(weather.temp) + Constants.celsius
+        weatherDescription?.text = weather.description
+        ///use  condition and descritpion as tags to request image from Flickr storage
+        setBackgoundImage(tag: weather.condition,
+                          cluster: weather.description.split{!$0.isLetter}.joined(separator: "/"))
+//        weatherIcon?.image = UIImage(named: "")
+    }
+    
+    private func updateBottomView() {
+        guard let weather = localWeather else { return }
+        bottomTemp?.text = String(weather.temp) + Constants.celsius
+        localLabel?.text = "Your local weather:"
+        localCityTitle?.text = weather.name
+        localDescription?.text = weather.description
+        ///use  condition and descritpion as tags to request image from Flickr storage
+        setBottomBackgoundImage(tag: weather.condition,
+                                cluster: weather.description.split{!$0.isLetter}.joined(separator: "/"))
+//        localIcon?.image = UIImage(named: "")
     }
     
     private func update() {
@@ -90,6 +121,23 @@ class MainViewController: UIViewController {
         network?.fetchCityForStorage(id: id) { [weak self] isSuccess in
             guard isSuccess else { return }
             self?.storage?.save()
+        }
+    }
+    
+    // MARK: Image Provider
+    private func setBackgoundImage(tag: String, cluster: String) {
+        imageProvider?.getImage(tag: tag, cluster: cluster) { [weak self] image in
+            guard image != nil else { return }
+            self?.backgroundImage?.image = image
+            self?.backgroundImage?.contentMode = .scaleToFill
+        }
+    }
+    
+    private func setBottomBackgoundImage(tag: String, cluster: String) {
+        imageProvider?.getImage(tag: tag, cluster: cluster) { [weak self] image in
+            guard image != nil else { return }
+            self?.localImage?.image = image
+            self?.localImage?.contentMode = .scaleToFill
         }
     }
 }

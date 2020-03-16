@@ -12,4 +12,5 @@ enum Constants {
     static let locationIsLoad = NSNotification.Name("LocationIsLoad")
     static let lat = "lat"
     static let lon = "lon"
+    static let celsius = "°C"
 }
