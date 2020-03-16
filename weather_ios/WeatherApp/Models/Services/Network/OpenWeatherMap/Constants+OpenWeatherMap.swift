@@ -15,5 +15,8 @@ extension Constants {
         static let appIdKey = "appId"
         static let unitsKey = "units"
         static let units = "Metric"
+        static let cityNameKey = "q"
+        static let cityLonKey = "lon"
+        static let cityLatKey = "lat"
     }
 }

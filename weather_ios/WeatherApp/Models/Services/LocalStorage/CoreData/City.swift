@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(City)
-class City: NSManagedObject, Decodable {
+class City: NSManagedObject, Decodable, CityModel {
     
     @NSManaged var id: NSNumber
     @NSManaged var name: String
@@ -25,19 +25,16 @@ class City: NSManagedObject, Decodable {
         case id, name, coord, lat, lon, main,temp, tempMin, tempMax, weather, condition
     }
     
-    // MARK: - Decodable
+    // MARK: - Decodable + CoreData
     required convenience init(from decoder: Decoder) throws {
-        
-        guard let userInfoContext = CodingUserInfoKey.managedObjectContext else {
-            fatalError("Failed to get managedObjectContext")
-        }
-        let managedObjectContext = decoder.userInfo[userInfoContext] as? NSManagedObjectContext ?? CoreData.shared.cityUpdateContext
+
+        let context = CoreData.shared.cityUpdateContext
         guard let entity = NSEntityDescription.entity(forEntityName: "City",
-                                                      in: managedObjectContext) else {
+                                                      in: context) else {
             fatalError("Failed to decode City")
         }
         
-        self.init(entity: entity, insertInto: managedObjectContext)
+        self.init(entity: entity, insertInto: context)
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

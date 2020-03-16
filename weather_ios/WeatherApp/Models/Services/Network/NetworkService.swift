@@ -9,18 +9,19 @@
 import Alamofire
 
 typealias Response<T> = (AFDataResponse<T>) -> Void
+typealias WeatherResponse = (WeatherModel?, Error?) -> Void
+typealias CityResponse = (City?, Error?) -> Void
 
 protocol NetworkService {
+    
     func getWeatherAt(city id: Int, result: @escaping WeatherResponse)
+    func getWeatherAt(city name: String, result: @escaping WeatherResponse)
+    func getCity(id: Int, with decoder: JSONDecoder, result: @escaping CityResponse)
 }
 
 extension NetworkService {
-    func fetch<T: Decodable>(_ request: DataRequest, of: T.Type, result: @escaping Response<T>) {
 
-        let decoder = JSONDecoder()
-        if let infoContext = CodingUserInfoKey.managedObjectContext {
-            decoder.userInfo[infoContext] = CoreData.shared.cityUpdateContext
-        }
+    func fetch<T: Decodable>(with decoder: JSONDecoder = JSONDecoder(), request: DataRequest, of: T.Type, result: @escaping Response<T>) {
         
         request
             .validate()
@@ -28,6 +29,4 @@ extension NetworkService {
                 result(response)
         }
     }
-    
-//    func fetch
 }

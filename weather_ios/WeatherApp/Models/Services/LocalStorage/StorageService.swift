@@ -10,4 +10,8 @@ import Foundation
 
 protocol StorageService {
     
+    func save()
+    func fetchCities() -> [CityModel]
+    func deleteCity(id: Int)
+    func cleanCities()
 }

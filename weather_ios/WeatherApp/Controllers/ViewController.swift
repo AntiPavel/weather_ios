@@ -15,7 +15,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        OpenWeatherMapNetwork().getWeatherAt(city: 2867714) { _,_  in
+//        OpenWeatherMapNetwork().getWeatherAt(city: 2867714) { result,_  in
+//
+//            let context = CoreData.shared.cityUpdateContext
+//
+//            guard context.hasChanges else { return }
+//
+//            do {
+//                try context.save()
+//                print("context.save() success")
+//            } catch let saveError {
+//                fatalError("Unresolved error: \(saveError), \(saveError.localizedDescription)")
+//            }
+//        }
+        OpenWeatherMapNetwork().getWeatherAt(city: "Moscow") { result, _ in
             
         }
     }

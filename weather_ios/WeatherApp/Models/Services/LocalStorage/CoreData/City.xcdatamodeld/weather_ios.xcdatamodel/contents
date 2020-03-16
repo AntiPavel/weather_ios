@@ -9,6 +9,11 @@
         <attribute name="temp" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="tempMax" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="tempMin" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="City" positionX="-63" positionY="-18" width="128" height="163"/>

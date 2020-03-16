@@ -6,7 +6,7 @@
 //  Copyright © 2020 pavel. All rights reserved.
 //
 
-public struct SuccessRespone: Codable {
+public struct SuccessRespone: Decodable, WeatherModel {
     let coord: Coordinate
     let weather: [Weather]
     let base: String
@@ -26,7 +26,7 @@ public struct SuccessRespone: Codable {
     }
 }
 
-public struct Weather: Codable {
+public struct Weather: Decodable {
     let id: Int
     let main: String
     let description: String
@@ -37,7 +37,7 @@ public struct Weather: Codable {
     }
 }
 
-public struct Main: Codable {
+public struct Main: Decodable {
     let temp: Double
     let pressure: Int
     let humidity: Int
@@ -51,7 +51,7 @@ public struct Main: Codable {
     }
 }
 
-public struct Wind: Codable {
+public struct Wind: Decodable {
     let speed: Double
     let deg: Double
     
@@ -60,7 +60,7 @@ public struct Wind: Codable {
     }
 }
 
-public struct Clouds: Codable {
+public struct Clouds: Decodable {
     let all: Int
     
     enum CodingKeys: String, CodingKey  {
@@ -68,7 +68,7 @@ public struct Clouds: Codable {
     }
 }
 
-public struct Sys: Codable {
+public struct Sys: Decodable {
     let type: Int
     let id: Int
     let message: Double?
@@ -81,7 +81,7 @@ public struct Sys: Codable {
     }
 }
 
-public struct Coordinate: Codable {
+public struct Coordinate: Decodable {
     let lat: Double
     let lon: Double
     

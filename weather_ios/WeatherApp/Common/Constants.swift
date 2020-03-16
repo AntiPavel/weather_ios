@@ -7,5 +7,7 @@
 //
 
 enum Constants {
-
+    static let locationIsLoad = "LocationIsLoad"
+    static let lat = "lat"
+    static let lon = "lon"
 }

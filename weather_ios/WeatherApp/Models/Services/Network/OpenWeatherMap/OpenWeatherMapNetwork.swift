@@ -8,13 +8,40 @@
 
 import Alamofire
 
-typealias WeatherResponse = (City?, Error?) -> Void
-
 struct OpenWeatherMapNetwork: NetworkService {
-
+    
     func getWeatherAt(city id: Int, result: @escaping WeatherResponse) {
 
-        fetch( AF.request( Router.getWeather(fetchRequest: .args(city: id))),
+        fetch(request: AF.request( Router.getWeather(fetchRequest: .withId(id))),
+              of: SuccessRespone.self) { response in
+
+                result(response.value, response.error)
+                print(response.value)
+        }
+    }
+    
+    func getWeatherAt(city name: String, result: @escaping WeatherResponse) {
+        
+        fetch(request: AF.request( Router.getWeather(fetchRequest: .withName(name))),
+              of: SuccessRespone.self) { response in
+
+                result(response.value, response.error)
+                print(response.value)
+        }
+    }
+    
+    func getWeatherAt(coordinates: Coordinate, result: @escaping WeatherResponse) {
+        
+        fetch(request: AF.request( Router.getWeather(fetchRequest: .withCoordinates(coordinates))),
+              of: SuccessRespone.self) { response in
+
+                result(response.value, response.error)
+                print(response.value)
+        }
+    }
+    
+    func getCity(id: Int, with decoder: JSONDecoder, result: @escaping CityResponse) {
+        fetch(with: decoder, request: AF.request( Router.getWeather(fetchRequest: .withId(id))),
               of: City.self) { response in
 
                 result(response.value, response.error)
@@ -66,15 +93,28 @@ extension OpenWeatherMapNetwork {
     
     private enum FetchRequest {
         
-        case args(city: Int)
+        case withId(_ id: Int)
+        case withName(_ name: String)
+        case withCoordinates(_ coordinates: Coordinate)
         
         var parameters: Parameters {
-            if case .args(let city) = self {
-                return [ Api.cityIdKey: city,
-                         Api.appIdKey: Api.appId,
-                         Api.unitsKey: Api.units, ]
+//            if case .withId(let city) = self {
+//                return [ Api.cityIdKey: city,
+//                         Api.appIdKey: Api.appId,
+//                         Api.unitsKey: Api.units, ]
+//            }
+            var params: [String: Any] = [ Api.appIdKey: Api.appId,
+                                          Api.unitsKey: Api.units, ]
+            switch self {
+            case .withId(let id):
+                params[Api.cityIdKey] = id
+            case .withName(let name):
+                params[Api.cityNameKey] = name
+            case .withCoordinates(let coordinates):
+                params[Api.cityLatKey] = coordinates.lat
+                params[Api.cityLonKey] = coordinates.lon
             }
-            return [:]
+            return params
         }
     }
 }
