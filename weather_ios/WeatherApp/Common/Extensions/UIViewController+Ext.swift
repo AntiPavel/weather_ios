@@ -22,4 +22,14 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         return tap
     }
+    
+    func show(error text: String) {
+        let alert = UIAlertController(title: nil,
+                                      message: text,
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: UIAlertAction.Style.destructive,
+                                      handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }

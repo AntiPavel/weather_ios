@@ -37,12 +37,11 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         update()
     }
     
@@ -67,7 +66,6 @@ class MainViewController: UIViewController {
     private func setup() {
         cityTextfield?.delegate = self
         coordinateUpdateListener()
-        location?.startUpdateLocation()
         setupHideKeyboardOnTap()
         searchButton?.isEnabled = false
     }
@@ -94,18 +92,6 @@ class MainViewController: UIViewController {
             self?.storage?.save()
         }
     }
-    
-    private func show(error text: String) {
-        let alert = UIAlertController(title: nil,
-                                      message: text,
-                                      preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Ok",
-                                      style: UIAlertAction.Style.destructive,
-                                      handler: nil))
-        
-        present(alert, animated: true, completion: nil)
-    }
 }
 
 extension MainViewController: LocalWeatherSubscriber {
@@ -116,36 +102,23 @@ extension MainViewController: LocalWeatherSubscriber {
 }
 
 extension MainViewController: UITextFieldDelegate {
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//         print("TextField did begin editing method called")
-//     }
-//     func textFieldDidEndEditing(_ textField: UITextField) {
-//         print("TextField did end editing method called\(textField.text!)")
-//     }
-//     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//         print("TextField should begin editing method called")
-//         return true
-//     }
+
      func textFieldShouldClear(_ textField: UITextField) -> Bool {
         searchButton?.isEnabled = false
         return true
      }
-//     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//         print("TextField should end editing method called")
-//         return true
-//     }
+
      func textField(_ textField: UITextField,
                     shouldChangeCharactersIn range: NSRange,
                     replacementString string: String) -> Bool {
-        
         var text = textField.text ?? ""
         let startIndex = text.index(text.startIndex, offsetBy: range.location)
         let endIndex = text.index(text.startIndex, offsetBy: range.location + range.length)
         text = text.replacingCharacters(in: startIndex..<endIndex, with: string)
         searchButton?.isEnabled = !text.isEmpty
-        
         return true
      }
+    
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("TextField should return method called")
         textField.resignFirstResponder()

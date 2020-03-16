@@ -53,15 +53,13 @@ final class CoreData: StorageService {
         guard cityUpdateContext.hasChanges else { return }
         do {
             try cityUpdateContext.save()
-            print("context.save() success")
         } catch let saveError {
             fatalError("Unresolved error: \(saveError), \(saveError.localizedDescription)")
         }
     }
     
     func deleteCity(id: Int) {
-        let context = cityUpdateContext//cityPersistentContainer.newBackgroundContext()
-//        context.mergePolicy  = NSMergeByPropertyObjectTrumpMergePolicy
+        let context = cityUpdateContext
         let fetchRequest: NSFetchRequest<City> = NSFetchRequest<City>(entityName: "City")
         fetchRequest.predicate = NSPredicate(format: "id == \(id)")
         
@@ -71,36 +69,21 @@ final class CoreData: StorageService {
                 context.delete(object)
             }
             try context.save()
-            print("city deleted id = \(id)")
         } catch let deleError {
             NSLog(deleError.localizedDescription)
         }
     }
     
     func cleanCities() {
-        let context = cityUpdateContext//cityPersistentContainer.newBackgroundContext()
-//        context.mergePolicy  = NSMergeByPropertyObjectTrumpMergePolicy
-//        let fetchRequest: NSFetchRequest<City> = NSFetchRequest<City>(entityName: "City")
+        let context = cityUpdateContext
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         do {
             try context.execute(deleteRequest)
             try context.save()
-            print("cities deleted")
         } catch let error {
             NSLog(error.localizedDescription)
         }
-        
-//        do {
-//            let objects = try context.fetch(fetchRequest)
-//            for object in objects {
-//                context.delete(object)
-//            }
-//            try context.save()
-//            print("cities deleted")
-//        } catch let deleError {
-//            NSLog(deleError.localizedDescription)
-//        }
     }
     
     private func reset() {
