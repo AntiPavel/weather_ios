@@ -16,7 +16,6 @@ struct OpenWeatherMapNetwork: NetworkService {
               of: SuccessRespone.self) { response in
 
                 result(response.value, response.error)
-                print(response.value)
         }
     }
     
@@ -26,7 +25,6 @@ struct OpenWeatherMapNetwork: NetworkService {
               of: SuccessRespone.self) { response in
 
                 result(response.value, response.error)
-                print(response.value)
         }
     }
     
@@ -36,7 +34,19 @@ struct OpenWeatherMapNetwork: NetworkService {
               of: SuccessRespone.self) { response in
 
                 result(response.value, response.error)
-                print(response.value)
+        }
+    }
+    
+    func fetchCityForStorage(id: Int, isSuccess: @escaping Success) {
+        fetch(request: AF.request( Router.getWeather(fetchRequest: .withId(id))),
+              of: City.self) { response in
+
+            switch response.result {
+            case .success:
+                isSuccess(true)
+            case .failure:
+                isSuccess(false)
+            }
         }
     }
     
@@ -45,17 +55,16 @@ struct OpenWeatherMapNetwork: NetworkService {
               of: City.self) { response in
 
                 result(response.value, response.error)
-                print(response.value)
         }
     }
 }
     
     // MARK: Open Weather Map API configuration
-extension OpenWeatherMapNetwork {
+private extension OpenWeatherMapNetwork {
     
-    private typealias Api = Constants.OpenWeatherMap
+    typealias Api = Constants.OpenWeatherMap
     
-    private enum Router: URLRequestConvertible {
+    enum Router: URLRequestConvertible {
         
         case getWeather(fetchRequest: FetchRequest)
         
@@ -85,24 +94,19 @@ extension OpenWeatherMapNetwork {
                 urlRequest = try URLEncoding.default.encode(urlRequest,
                                                             with: fetchRequest.parameters)
             }
-            
             return urlRequest
         }
         
     }
     
-    private enum FetchRequest {
+    enum FetchRequest {
         
         case withId(_ id: Int)
         case withName(_ name: String)
         case withCoordinates(_ coordinates: Coordinate)
         
         var parameters: Parameters {
-//            if case .withId(let city) = self {
-//                return [ Api.cityIdKey: city,
-//                         Api.appIdKey: Api.appId,
-//                         Api.unitsKey: Api.units, ]
-//            }
+
             var params: [String: Any] = [ Api.appIdKey: Api.appId,
                                           Api.unitsKey: Api.units, ]
             switch self {

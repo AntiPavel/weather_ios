@@ -28,9 +28,11 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func saveAction(_ sender: Any) {
+        saveCity()
     }
     
     @IBAction func updateAction(_ sender: Any) {
+        update() 
     }
     
     override func viewDidLoad() {
@@ -39,12 +41,9 @@ class MainViewController: UIViewController {
         setup()
     }
     
-    private func setup() {
-        cityTextfield?.delegate = self
-        coordinateUpdateListener()
-        location?.startUpdateLocation()
-        setupHideKeyboardOnTap()
-        searchButton?.isEnabled = false
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        update()
     }
     
     var searchedWeather: WeatherModel? {
@@ -59,8 +58,26 @@ class MainViewController: UIViewController {
         }
     }
     
+    private func update() {
+        location?.startUpdateLocation()
+        guard let city = searchedWeather?.name else { return }
+        search(city: city)
+    }
+    
+    private func setup() {
+        cityTextfield?.delegate = self
+        coordinateUpdateListener()
+        location?.startUpdateLocation()
+        setupHideKeyboardOnTap()
+        searchButton?.isEnabled = false
+    }
+    
     private func searchCity() {
         guard let city = cityTextfield?.text, !city.isEmpty else { return }
+        search(city: city)
+    }
+    
+    private func search(city: String) {
         network?.getWeatherAt(city: city) { [weak self] response, _ in
             guard let weather = response else {
                 self?.show(error: "City not found!")
@@ -70,8 +87,15 @@ class MainViewController: UIViewController {
         }
     }
     
-    func show(error text: String) {
-        
+    private func saveCity() {
+        guard let id = searchedWeather?.id else { return }
+        network?.fetchCityForStorage(id: id) { [weak self] isSuccess in
+            guard isSuccess else { return }
+            self?.storage?.save()
+        }
+    }
+    
+    private func show(error text: String) {
         let alert = UIAlertController(title: nil,
                                       message: text,
                                       preferredStyle: UIAlertController.Style.alert)
@@ -128,20 +152,4 @@ extension MainViewController: UITextFieldDelegate {
         searchCity()
         return true
      }
-}
-
-import UIKit
-extension UIViewController {
-    /// Call this once to dismiss open keyboards by tapping anywhere in the view controller
-    func setupHideKeyboardOnTap() {
-        self.view.addGestureRecognizer(self.endEditingRecognizer())
-        self.navigationController?.navigationBar.addGestureRecognizer(self.endEditingRecognizer())
-    }
-
-    /// Dismisses the keyboard from self.view
-    private func endEditingRecognizer() -> UIGestureRecognizer {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
-        tap.cancelsTouchesInView = false
-        return tap
-    }
 }
