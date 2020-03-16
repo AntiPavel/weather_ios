@@ -11,7 +11,7 @@ import UIKit
 
 @objc protocol LocalWeatherSubscriber: NSObjectProtocol { }
 
-extension LocalWeatherSubscriber where Self: ViewController {
+extension LocalWeatherSubscriber where Self: MainViewController {
     func coordinateUpdateListener() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateWeather),
