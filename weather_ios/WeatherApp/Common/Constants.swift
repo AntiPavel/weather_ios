@@ -6,8 +6,10 @@
 //  Copyright © 2020 pavel. All rights reserved.
 //
 
+import Foundation
+
 enum Constants {
-    static let locationIsLoad = "LocationIsLoad"
+    static let locationIsLoad = NSNotification.Name("LocationIsLoad")
     static let lat = "lat"
     static let lon = "lon"
 }

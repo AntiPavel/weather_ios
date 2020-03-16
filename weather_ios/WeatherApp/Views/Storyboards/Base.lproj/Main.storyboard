@@ -24,6 +24,13 @@
                                     <segue destination="eHn-Fa-74K" kind="show" identifier="showList" id="rkt-vC-7io"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1P-DD-Jcu">
+                                <rect key="frame" x="205" y="467" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -32,6 +39,9 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="67Y-eq-T2V"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0Nj-wK-Fam"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bottomTemp" destination="c1P-DD-Jcu" id="Gzc-Jm-erK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

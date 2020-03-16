@@ -14,9 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var network: NetworkService?
+    var storage: StorageService?
+    var location: LocationManager?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        location = LocationManager()
+        network = OpenWeatherMapNetwork()
+        storage = CoreData.shared
+        
         return true
     }
 

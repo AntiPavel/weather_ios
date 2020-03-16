@@ -16,6 +16,7 @@ protocol NetworkService {
     
     func getWeatherAt(city id: Int, result: @escaping WeatherResponse)
     func getWeatherAt(city name: String, result: @escaping WeatherResponse)
+    func getWeatherAt(coordinates: Coordinate, result: @escaping WeatherResponse)
     func getCity(id: Int, with decoder: JSONDecoder, result: @escaping CityResponse)
 }
 

@@ -8,12 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, LocalWeatherSubscriber {
     
-    
+    private var appDelegate = UIApplication.shared.delegate as? AppDelegate
+    lazy var network: NetworkService? = appDelegate?.network
+    lazy var storage: StorageService? = appDelegate?.storage
+    lazy var location: LocationManager? = appDelegate?.location
 
+    @IBOutlet weak var bottomTemp: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // bottomTemp.text = localWeather?.description
         // Do any additional setup after loading the view.
 //        OpenWeatherMapNetwork().getWeatherAt(city: 2867714) { result,_  in
 //
@@ -28,9 +34,20 @@ class ViewController: UIViewController {
 //                fatalError("Unresolved error: \(saveError), \(saveError.localizedDescription)")
 //            }
 //        }
-        OpenWeatherMapNetwork().getWeatherAt(city: "Moscow") { result, _ in
-            
+        coordinateUpdateListener()
+        location?.startUpdateLocation()
+//        OpenWeatherMapNetwork().getWeatherAt(city: "Moscow") { result, _ in
+//            
+//        }
+    }
+    
+    var localWeather: WeatherModel? {
+        didSet {
+            bottomTemp.text = localWeather?.description
         }
     }
-
+    
+    @objc func updateWeather(notification: Notification) {
+        fetchWeather(notification)
+    }
 }
