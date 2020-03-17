@@ -5,7 +5,7 @@
 //  Created by paul on 16/03/2020.
 //  Copyright © 2020 pavel. All rights reserved.
 //
-
+// swiftlint:disable identifier_name
 extension Constants {
     enum Flickr {
         static let baseURL = "https://api.flickr.com/"

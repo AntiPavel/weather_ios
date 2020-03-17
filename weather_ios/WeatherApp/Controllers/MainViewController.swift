@@ -71,9 +71,9 @@ class MainViewController: UIViewController {
         tempLabel?.text = String(weather.temp) + Constants.celsius
         weatherDescription?.text = weather.description
         
-        ///use  condition and descritpion as tags to request image from Flickr storage
+        //use  condition and descritpion as tags to request image from Flickr storage
         setBackgoundImage(tag: weather.condition,
-                          cluster: weather.description.split{!$0.isLetter}.joined(separator: "/"))
+                          cluster: weather.description.split { !$0.isLetter }.joined(separator: "/"))
         weatherIcon?.text =  weather.icon
     }
     
@@ -84,9 +84,9 @@ class MainViewController: UIViewController {
         localCityTitle?.text = weather.name
         localDescription?.text = weather.description
         
-        ///use  condition and descritpion as tags to request image from Flickr storage
+        //use  condition and descritpion as tags to request image from Flickr storage
         setBottomBackgoundImage(tag: weather.condition,
-                                cluster: weather.description.split{!$0.isLetter}.joined(separator: "/"))
+                                cluster: weather.description.split { !$0.isLetter}.joined(separator: "/"))
         localIcon?.text = weather.icon
     }
         
@@ -117,7 +117,7 @@ class MainViewController: UIViewController {
             self?.searchedWeather = weather
         }
     }
-    
+    // swiftlint:disable identifier_name
     private func saveCity() {
         guard let id = searchedWeather?.id else { return }
         network?.fetchCityForStorage(id: id) { [weak self] isSuccess in

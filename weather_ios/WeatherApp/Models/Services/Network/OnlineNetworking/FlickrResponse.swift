@@ -16,7 +16,7 @@ struct FlickrResponse: Decodable {
 struct Photos: Decodable {
     let photo: [Photo]
 }
-
+// swiftlint:disable identifier_name
 struct Photo: Decodable {
     let id: String
     let secret: String

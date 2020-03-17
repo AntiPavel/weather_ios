@@ -5,7 +5,7 @@
 //  Created by paul on 15/03/2020.
 //  Copyright © 2020 pavel. All rights reserved.
 //
-
+// swiftlint:disable identifier_name
 import Alamofire
 
 final class OnlineNetworking: NetworkService {
@@ -33,7 +33,7 @@ final class OnlineNetworking: NetworkService {
                 result(response.value, response.error)
         }
     }
-    
+
     func fetchCityForStorage(id: Int, isSuccess: @escaping Success) {
         fetch(request: AF.request( Router.getWeather(fetchRequest: .withId(id))),
               of: City.self) { response in

@@ -14,7 +14,7 @@ typealias CityResponse = (City?, Error?) -> Void
 typealias Success = (Bool) -> Void
 
 protocol NetworkService {
-    
+    // swiftlint:disable identifier_name
     func getWeatherAt(city id: Int, result: @escaping WeatherResponse)
     func getWeatherAt(city name: String, result: @escaping WeatherResponse)
     func getWeatherAt(coordinates: Coordinate, result: @escaping WeatherResponse)

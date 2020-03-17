@@ -1,5 +1,6 @@
 disabled_rules:
  - trailing_whitespace
+
 excluded:
  - Pods
 trailing_comma:
@@ -11,6 +12,7 @@ opt_in_rules:
 force_try: error
 force_cast: error
 line_length: 256
+
 colon:
 apply_to_dictionaries: false
 attributes: warning

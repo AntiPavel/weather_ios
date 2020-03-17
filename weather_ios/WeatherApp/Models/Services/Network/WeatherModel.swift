@@ -9,7 +9,7 @@
 import Foundation
 
 protocol WeatherModel {
-    
+    // swiftlint:disable identifier_name
     var id: Int { get }
     var name: String { get }
     var temp: Int { get }
