@@ -88,12 +88,6 @@ extension OnlineNetworking: ImageProvider {
                 result(nil)
             }
         }
-        
-//        fetch(request: AF.request( Router.getImages(fetchRequest: .images(tag: tag, cluster: cluster))),
-//              of: FlickrResponse.self) { response in
-//
-//                result(response.value)
-//        }
     }
     
     private func makeImageUrlString(photo: Photo) -> String {
@@ -185,25 +179,3 @@ private extension OnlineNetworking {
         
     }
 }
-
-struct FlickrResponse: Decodable {
-    let stat: String
-    let photos: Photos
-}
-
-struct Photos: Decodable {
-    let photo: [Photo]
-}
-
-struct Photo: Decodable {
-    let id: String
-    let secret: String
-    let server: String
-    let farm: Int
-}
-
-//init(photo: Photo) {
-//     urlToImage = "https://farm\(photo.farm ?? 1).staticflickr.com/\(photo.server ?? "")/\(photo.id ?? "")_\(photo.secret ?? "").jpg"
-// }
-
-//https://www.flickr.com/services/rest/?method=flickr.tags.getClusterPhotos&api_key=c90c2ca88890a06da9d32d2326182358&tag=snow&cluster_id=broken%2Fclouds&format=json&nojsoncallback=1

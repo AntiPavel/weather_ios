@@ -89,9 +89,7 @@ class MainViewController: UIViewController {
                                 cluster: weather.description.split{!$0.isLetter}.joined(separator: "/"))
         localIcon?.text = weather.icon
     }
-    
-    
-    
+        
     private func update() {
         location?.startUpdateLocation()
         guard let city = searchedWeather?.name else { return }
