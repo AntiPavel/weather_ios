@@ -73,9 +73,8 @@ class CityTableViewController: UITableViewController {
                                                        for: indexPath) as? CityViewCell else { return UITableViewCell() }
         cell.title?.text = cities[indexPath.row].name
         cell.temp?.text = cities[indexPath.row].temp.stringValue + Constants.celsius
-        cell.condition?.text = cities[indexPath.row].condition
-//        let item = ChatGroupItem(chat: chats[indexPath.item], onDelete: nil)
-//        cell.update(with: item)
+        cell.condition?.text = cities[indexPath.row].descript
+        cell.icon?.text = cities[indexPath.row].icon
         return cell
     }
     

@@ -20,10 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Request access to current location for local weather</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Request access to current location for local weather</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Request access to current location for local weather</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Request access to current location for local weather</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -64,5 +64,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>UIAppFonts</key>
+    <array>
+        <string>weathericons-regular-webfont.ttf</string>
+    </array>
 </dict>
 </plist>

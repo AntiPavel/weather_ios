@@ -36,6 +36,9 @@
 		DA09CFB9241FEB9E00991198 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFB8241FEB9E00991198 /* UIViewController+Ext.swift */; };
 		DA09CFBB2420253800991198 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFBA2420253800991198 /* ImageProvider.swift */; };
 		DA09CFBD242026AB00991198 /* Constants+Flickr.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFBC242026AB00991198 /* Constants+Flickr.swift */; };
+		DA09CFC224204D6E00991198 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFC124204D6E00991198 /* Coordinate.swift */; };
+		DA09CFC524204FD000991198 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA09CFC424204FD000991198 /* weathericons-regular-webfont.ttf */; };
+		DA09CFC72420594C00991198 /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFC62420594C00991198 /* WeatherIcon.swift */; };
 		DE646A2D7DBDC55EF708EEB4 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C17D9D096833A2EFCC4F0285 /* Pods_WeatherApp.framework */; };
 		F6B449942F3B74505379CFD1 /* Pods_WeatherApp_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C3219CBAA569671D94D1DB /* Pods_WeatherApp_WeatherAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -99,6 +102,9 @@
 		DA09CFB8241FEB9E00991198 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		DA09CFBA2420253800991198 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		DA09CFBC242026AB00991198 /* Constants+Flickr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Flickr.swift"; sourceTree = "<group>"; };
+		DA09CFC124204D6E00991198 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		DA09CFC424204FD000991198 /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "../../../../../../Desktop/SwiftLanguageWeather-master/SwiftWeather/fonts/weathericons-regular-webfont.ttf"; sourceTree = "<group>"; };
+		DA09CFC62420594C00991198 /* WeatherIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIcon.swift; sourceTree = "<group>"; };
 		DAE6F2F7F535D7A80EED636B /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		DFA58460D1880D68078F7958 /* Pods-WeatherApp-WeatherAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,6 +216,7 @@
 		DA09690F241D975000FFB321 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DA09CFC324204F7F00991198 /* fonts */,
 				DA0968E8241D921800FFB321 /* Assets.xcassets */,
 				DA0968ED241D921800FFB321 /* Info.plist */,
 			);
@@ -248,8 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				DA096919241DB69900FFB321 /* Services */,
-				DA09CFAB241F31D500991198 /* CityModel.swift */,
-				DA09CFAD241F322E00991198 /* WeatherModel.swift */,
+				DA09CFC62420594C00991198 /* WeatherIcon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 		DA096918241DB65C00FFB321 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				DA09CFAD241F322E00991198 /* WeatherModel.swift */,
 				DA09691A241DB86900FFB321 /* NetworkService.swift */,
 				DA09CFBA2420253800991198 /* ImageProvider.swift */,
 				DA096921241E32BD00FFB321 /* OnlineNetworking */,
@@ -276,10 +283,9 @@
 		DA096919241DB69900FFB321 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DA09CFC024204D2D00991198 /* Location */,
 				DA096926241E37F400FFB321 /* LocalStorage */,
 				DA096918241DB65C00FFB321 /* Network */,
-				DA09CFAF241F3F1800991198 /* LocationManager.swift */,
-				DA09CFB1241FB24300991198 /* LocalWeatherSubscriber.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -309,6 +315,7 @@
 		DA096926241E37F400FFB321 /* LocalStorage */ = {
 			isa = PBXGroup;
 			children = (
+				DA09CFAB241F31D500991198 /* CityModel.swift */,
 				DA096927241E384200FFB321 /* StorageService.swift */,
 				DA096910241D983600FFB321 /* CoreData */,
 			);
@@ -322,6 +329,24 @@
 				DA09CFB8241FEB9E00991198 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DA09CFC024204D2D00991198 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				DA09CFB1241FB24300991198 /* LocalWeatherSubscriber.swift */,
+				DA09CFAF241F3F1800991198 /* LocationManager.swift */,
+				DA09CFC124204D6E00991198 /* Coordinate.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		DA09CFC324204F7F00991198 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DA09CFC424204FD000991198 /* weathericons-regular-webfont.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +463,7 @@
 				DA0968EC241D921800FFB321 /* LaunchScreen.storyboard in Resources */,
 				DA0968E9241D921800FFB321 /* Assets.xcassets in Resources */,
 				DA096915241D994E00FFB321 /* README.md in Resources */,
+				DA09CFC524204FD000991198 /* weathericons-regular-webfont.ttf in Resources */,
 				DA0968E4241D921500FFB321 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,6 +631,7 @@
 				DA096923241E32F000FFB321 /* Constants+OpenWeatherMap.swift in Sources */,
 				DA09CFB9241FEB9E00991198 /* UIViewController+Ext.swift in Sources */,
 				DA09692E241ED33600FFB321 /* City.swift in Sources */,
+				DA09CFC224204D6E00991198 /* Coordinate.swift in Sources */,
 				DA09691B241DB86900FFB321 /* NetworkService.swift in Sources */,
 				DA09CFBB2420253800991198 /* ImageProvider.swift in Sources */,
 				DA09CFBD242026AB00991198 /* Constants+Flickr.swift in Sources */,
@@ -613,6 +640,7 @@
 				DA0968E1241D921500FFB321 /* MainViewController.swift in Sources */,
 				DA0968DD241D921500FFB321 /* AppDelegate.swift in Sources */,
 				DA096930241EE05600FFB321 /* CodingUserInfoKey+Ext.swift in Sources */,
+				DA09CFC72420594C00991198 /* WeatherIcon.swift in Sources */,
 				DA09CFB0241F3F1800991198 /* LocationManager.swift in Sources */,
 				DA096928241E384200FFB321 /* StorageService.swift in Sources */,
 				DA096925241E33BA00FFB321 /* SuccessRespone.swift in Sources */,

@@ -30,4 +30,12 @@ extension WeatherModel {
     var description: String {
         return weather.first?.description ?? ""
     }
+    var icon: String? {
+        guard let id = weather.first?.id,
+            let icon = weather.first?.icon else { return nil }
+        
+        let prefix = icon.range(of: "n") == nil ? "day": "night"
+
+        return IconType(rawValue: prefix + String(id))?.description
+    }
 }

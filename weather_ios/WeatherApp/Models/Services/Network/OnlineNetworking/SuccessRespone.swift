@@ -20,10 +20,6 @@ public struct SuccessRespone: Decodable, WeatherModel {
     let id: Int
     let name: String
     let cod: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case coord, weather, base, main, visibility, wind, clouds, dt, sys, timezone, id, name, cod
-    }
 }
 
 public struct Weather: Decodable {
@@ -31,10 +27,6 @@ public struct Weather: Decodable {
     let main: String
     let description: String
     let icon: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id, main, description, icon
-    }
 }
 
 public struct Main: Decodable {
@@ -54,18 +46,10 @@ public struct Main: Decodable {
 public struct Wind: Decodable {
     let speed: Double
     let deg: Double
-    
-    enum CodingKeys: String, CodingKey {
-        case speed, deg
-    }
 }
 
 public struct Clouds: Decodable {
     let all: Int
-    
-    enum CodingKeys: String, CodingKey  {
-        case all
-    }
 }
 
 public struct Sys: Decodable {
@@ -75,17 +59,4 @@ public struct Sys: Decodable {
     let country: String
     let sunrise: Int
     let sunset: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case type, id, message, country, sunrise, sunset
-    }
-}
-
-public struct Coordinate: Decodable {
-    let lat: Double
-    let lon: Double
-    
-    enum CodingKeys: String, CodingKey {
-        case lat, lon
-    }
 }

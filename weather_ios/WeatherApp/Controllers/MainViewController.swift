@@ -18,13 +18,13 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var cityTitle: UILabel?
     @IBOutlet weak var weatherDescription: UILabel?
-    @IBOutlet weak var weatherIcon: UIImageView?
+    @IBOutlet weak var weatherIcon: UILabel?
     @IBOutlet weak var tempLabel: UILabel?
     @IBOutlet weak var backgroundImage: UIImageView?
     @IBOutlet weak var localLabel: UILabel?
     @IBOutlet weak var localCityTitle: UILabel?
     @IBOutlet weak var localDescription: UILabel?
-    @IBOutlet weak var localIcon: UIImageView?
+    @IBOutlet weak var localIcon: UILabel?
     @IBOutlet weak var bottomTemp: UILabel?
     @IBOutlet weak var cityTextfield: UITextField?
     @IBOutlet weak var searchButton: UIButton?
@@ -70,10 +70,11 @@ class MainViewController: UIViewController {
         cityTitle?.text = weather.name
         tempLabel?.text = String(weather.temp) + Constants.celsius
         weatherDescription?.text = weather.description
+        
         ///use  condition and descritpion as tags to request image from Flickr storage
         setBackgoundImage(tag: weather.condition,
                           cluster: weather.description.split{!$0.isLetter}.joined(separator: "/"))
-//        weatherIcon?.image = UIImage(named: "")
+        weatherIcon?.text =  weather.icon
     }
     
     private func updateBottomView() {
@@ -82,11 +83,14 @@ class MainViewController: UIViewController {
         localLabel?.text = "Your local weather:"
         localCityTitle?.text = weather.name
         localDescription?.text = weather.description
+        
         ///use  condition and descritpion as tags to request image from Flickr storage
         setBottomBackgoundImage(tag: weather.condition,
                                 cluster: weather.description.split{!$0.isLetter}.joined(separator: "/"))
-//        localIcon?.image = UIImage(named: "")
+        localIcon?.text = weather.icon
     }
+    
+    
     
     private func update() {
         location?.startUpdateLocation()

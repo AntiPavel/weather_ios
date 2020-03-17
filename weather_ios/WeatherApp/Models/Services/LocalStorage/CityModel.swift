@@ -14,4 +14,6 @@ protocol CityModel {
     var name: String { get }
     var temp: NSNumber { get }
     var condition: String { get }
+    var descript: String { get }
+    var icon: String { get }
 }

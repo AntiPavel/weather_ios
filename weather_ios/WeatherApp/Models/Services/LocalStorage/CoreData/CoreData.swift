@@ -53,8 +53,8 @@ final class CoreData: StorageService {
         guard cityUpdateContext.hasChanges else { return }
         do {
             try cityUpdateContext.save()
-        } catch let saveError {
-            fatalError("Unresolved error: \(saveError), \(saveError.localizedDescription)")
+        } catch let error {
+            NSLog(error.localizedDescription)
         }
     }
     
