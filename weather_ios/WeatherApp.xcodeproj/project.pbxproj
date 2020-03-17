@@ -36,9 +36,9 @@
 		DA09CFBB2420253800991198 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFBA2420253800991198 /* ImageProvider.swift */; };
 		DA09CFBD242026AB00991198 /* Constants+Flickr.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFBC242026AB00991198 /* Constants+Flickr.swift */; };
 		DA09CFC224204D6E00991198 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFC124204D6E00991198 /* Coordinate.swift */; };
-		DA09CFC524204FD000991198 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA09CFC424204FD000991198 /* weathericons-regular-webfont.ttf */; };
 		DA09CFC72420594C00991198 /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFC62420594C00991198 /* WeatherIcon.swift */; };
 		DA09CFC9242064FE00991198 /* FlickrResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA09CFC8242064FE00991198 /* FlickrResponse.swift */; };
+		DA5705602420C0F500630BE2 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA57055F2420C0F500630BE2 /* weathericons-regular-webfont.ttf */; };
 		DE646A2D7DBDC55EF708EEB4 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C17D9D096833A2EFCC4F0285 /* Pods_WeatherApp.framework */; };
 		F6B449942F3B74505379CFD1 /* Pods_WeatherApp_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C3219CBAA569671D94D1DB /* Pods_WeatherApp_WeatherAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -102,9 +102,9 @@
 		DA09CFBA2420253800991198 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		DA09CFBC242026AB00991198 /* Constants+Flickr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Flickr.swift"; sourceTree = "<group>"; };
 		DA09CFC124204D6E00991198 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		DA09CFC424204FD000991198 /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "weathericons-regular-webfont.ttf"; path = "../../../../../../Desktop/SwiftLanguageWeather-master/SwiftWeather/fonts/weathericons-regular-webfont.ttf"; sourceTree = "<group>"; };
 		DA09CFC62420594C00991198 /* WeatherIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIcon.swift; sourceTree = "<group>"; };
 		DA09CFC8242064FE00991198 /* FlickrResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrResponse.swift; sourceTree = "<group>"; };
+		DA57055F2420C0F500630BE2 /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "weathericons-regular-webfont.ttf"; sourceTree = "<group>"; };
 		DAE6F2F7F535D7A80EED636B /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		DFA58460D1880D68078F7958 /* Pods-WeatherApp-WeatherAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -344,7 +344,7 @@
 		DA09CFC324204F7F00991198 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				DA09CFC424204FD000991198 /* weathericons-regular-webfont.ttf */,
+				DA57055F2420C0F500630BE2 /* weathericons-regular-webfont.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -463,7 +463,7 @@
 				DA0968EC241D921800FFB321 /* LaunchScreen.storyboard in Resources */,
 				DA0968E9241D921800FFB321 /* Assets.xcassets in Resources */,
 				DA096915241D994E00FFB321 /* README.md in Resources */,
-				DA09CFC524204FD000991198 /* weathericons-regular-webfont.ttf in Resources */,
+				DA5705602420C0F500630BE2 /* weathericons-regular-webfont.ttf in Resources */,
 				DA0968E4241D921500FFB321 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
